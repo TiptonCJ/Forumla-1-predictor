@@ -56,7 +56,6 @@ for season, rounds in SEASONS_AND_ROUNDS:
         all_data = pd.concat([all_data, race_data], ignore_index=True)
 
 # === Filter out data from the predicted race and any after it ===
-#all_data = all_data[all_data['Year'] <= PREDICT_YEAR]
 all_data = all_data[all_data['Round'] < PREDICT_ROUND]
 
 # === Feature Engineering ===
@@ -165,6 +164,6 @@ pred_df['PredQualy'] = range(1, len(pred_df) + 1)
 # Assign unique race positions (1, 2, 3, ...) based on sorted PredRacePos
 pred_df = pred_df.sort_values('PredRacePos').reset_index(drop=True)
 pred_df['PredRacePos'] = range(1, len(pred_df) + 1)
-print("\nPredicted Results for " + PREDICT_YEAR + " Round " + str(PREDICT_ROUND) + ":\n")
+print("\nPredicted Results for " + str(PREDICT_YEAR) + " Round " + str(PREDICT_ROUND) + ":\n")
 print(pred_df[['DriverId', 'Constructor', 'PredQualy', 'PredRacePos']])
 
